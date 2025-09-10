@@ -12,12 +12,12 @@ public class StudentManagementSystem {
 
     public void addStudent(Student student) {
         if (getStudentByRoll(student.getRollNumber()) != null) {
-            System.out.println("❌ Student with this roll number already exists.");
+            System.out.println(" Student with this roll number already exists.");
             return;
         }
         students.add(student);
         saveToFile();
-        System.out.println("✅ Student added successfully.");
+        System.out.println("Student added successfully.");
     }
 
     public void removeStudent(String rollNumber) {
@@ -25,9 +25,9 @@ public class StudentManagementSystem {
         if (student != null) {
             students.remove(student);
             saveToFile();
-            System.out.println("✅ Student removed successfully.");
+            System.out.println(" Student removed successfully.");
         } else {
-            System.out.println("❌ Student not found.");
+            System.out.println(" Student not found.");
         }
     }
 
@@ -38,25 +38,25 @@ public class StudentManagementSystem {
             student.setGrade(newGrade);
             student.setAge(newAge);
             saveToFile();
-            System.out.println("✅ Student updated successfully.");
+            System.out.println(" Student updated successfully.");
         } else {
-            System.out.println("❌ Student not found.");
+            System.out.println(" Student not found.");
         }
     }
 
     public void searchStudent(String rollNumber) {
         Student student = getStudentByRoll(rollNumber);
         if (student != null) {
-            System.out.println("🔍 Found Student:");
+            System.out.println("Found Student:");
             System.out.println(student);
         } else {
-            System.out.println("❌ Student not found.");
+            System.out.println(" Student not found.");
         }
     }
 
     public void displayAllStudents() {
         if (students.isEmpty()) {
-            System.out.println("📭 No students found.");
+            System.out.println(" No students found.");
         } else {
             System.out.println("📋 All Students:");
             for (Student student : students) {
@@ -78,7 +78,7 @@ public class StudentManagementSystem {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             out.writeObject(students);
         } catch (IOException e) {
-            System.out.println("❌ Error saving to file: " + e.getMessage());
+            System.out.println("Error saving to file: " + e.getMessage());
         }
     }
 
@@ -90,7 +90,8 @@ public class StudentManagementSystem {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
             students = (List<Student>) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("⚠️ Error loading data. Starting with an empty list.");
+            System.out.println(" Error loading data. Starting with an empty list.");
         }
     }
 }
+
